@@ -1,0 +1,25 @@
+{
+  "name": "feedbackproject",
+  "version": "1.0.0",
+  "description": "Project using express and react",
+  "main": "index.js",
+  "engines": {"npm": "7.20.5",
+  "node": "15.8.0"},
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepak-pal/feedbackProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deepak-pal/feedbackProject/issues"
+  },
+  "homepage": "https://github.com/deepak-pal/feedbackProject#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
