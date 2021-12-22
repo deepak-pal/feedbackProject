@@ -5,7 +5,7 @@ const passport = require('passport');
 //const { MongoClient } = require('mongodb');
 const key = require('./config/key');
 require('./models/Users')
-require('./services//passport');
+require('./services/passport');
 mongosse.connect(key.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const app = express();
