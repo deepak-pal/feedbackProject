@@ -1,8 +1,7 @@
-const keys = require('../config/key')
 const passport = require('passport');
-const mongoose = require('mongoose');
-
 const GoogleStrategy = require('passport-google-oauth20').Strategy
+const mongoose = require('mongoose');
+const keys = require('../config/key')
 
 const User = mongoose.model('users');
 
@@ -19,16 +18,18 @@ passport.deserializeUser((id, done) => {
 passport.use(new GoogleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecretKey,
-    callbackURL: '/auth/google/callback'
-}, (accesToken, refreshToken, profile, done) => {
-    User.findOne({ googleId: profile.id }).then(existingUser => {
+    callbackURL: '/auth/google/callback',
+    proxy: true
+},
+    async (accesToken, refreshToken, profile, done) => {
+        const existingUser = await User.findOne({ googleId: profile.id })
+
         if (existingUser) {
             done(null, existingUser)
         }
         else {
-            new User({ googleId: profile.id }).save().then(user => done(null, user))
+            const user = await new User({ googleId: profile.id }).save();
+            done(null, user)
         }
-    })
-    //console.log("Access Token \\n Refresh Token \\n Profile", accesToken, refreshToken, profile);
 
-}))
+    }))
